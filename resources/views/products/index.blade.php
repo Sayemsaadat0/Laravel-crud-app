@@ -18,6 +18,7 @@
             <td>Descdiption</td>
             <td>Date</td>
             <td>Edit</td>
+            <td>Action</td>
         </tr>
         @foreach ($products as $product)
         <tr>
@@ -29,6 +30,13 @@
         <td>{{$product->created_at}}</td>
         <td>
             <a href="{{route('product.edit', ['product'=> $product])}}">Edit</a><td>
+                <td>
+                    <form method="post" action="{{route('product.destroy',['product' => $product])}}">
+                        @csrf 
+                        @method('delete')
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
     </tr>            
         @endforeach
     </table>

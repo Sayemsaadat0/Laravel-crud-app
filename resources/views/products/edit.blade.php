@@ -9,13 +9,14 @@
 <body>
     <h1>Edit A Product</h1>
     <div>
-        @if ($errors->any())
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-            </ul>
-        @endif
+        @if (session()->has('success'))
+            <div>
+                {{session('success')}}
+            </div>
+        @endif 
+        <div>
+            nothing happeded
+        </div>
     </div>
     
     <form method="post" action="{{route('product.update',['product'=> $product])}}"> 
