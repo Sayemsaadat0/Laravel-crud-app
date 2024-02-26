@@ -36,21 +36,21 @@ class ProductController extends Controller
     }
 
 
+    // to update the data first we need to get the specific data 
     public function edit(Product $product)
     {
         return view('products.edit', ['product' => $product]);
     }
 
+    // update handle routes
     public function update(Product $product,  Request $request)
     {
-        // return view('products.edit');
         $data = $request->validate(([
             'name' => 'required',
             'qty' => 'required|numeric',
             'price' => 'required|decimal:0,2',
             'description' => 'nullable'
         ]));
-        // dd($data);
         $product->update($data);
 
         return redirect(route('product.index'))->with('success', 'Product Updated Successfully');
